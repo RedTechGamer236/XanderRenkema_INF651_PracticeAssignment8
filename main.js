@@ -14,6 +14,16 @@ given in the comments.
 // the constructor and a method named "rolling" that returns a string
 // equal to "Rolling down the highway on {wheels value} wheels."
 // Use the class to instantiate a new object named myRide.
+class Vehicle {
+  constructor() {
+    this.wheels = 4;
+  }
+  rolling() {
+    return "Rolling down the highway on " + this.wheels + " wheels.";
+  }
+}
+
+const myRide = new Vehicle();
 
 // 2) Define a "Car" subclass based on the parent class "Vehicle".
 // The "Car" class should also accept a parameter "carDoors". The
@@ -22,12 +32,40 @@ given in the comments.
 // that returns a string equal to "My car has {doors value} doors and
 // {wheels value} wheels."
 // Use the "Car" class to instantiate a new object named myCruiser.
+class Car extends Vehicle {
+  constructor(carDoors) {
+    super();
+    this.doors = carDoors;
+  }
+  
+  doorsAndWheels() {
+    return "My car has " + this.doors + " doors and " + this.wheels + " wheels.";
+  }
+}
+
+const myCruiser = new Car(4);
 
 // 3) Define a "Pie" class with the properties "flavor" and "slices".
 // Set the "flavor" property equal to a parameter named "pieFlavor".
 // Set the "slices" property equal to 8. Add a "getSlices" method
 // and a "setSlices" method that function as expected.
 // Use the "Pie" class to instantiate a new object named myDessert
+class Pie {
+  constructor(pieFlavor) {
+    this.flavor = pieFlavor;
+    this.slices = 8;
+  }
+  
+  getSlices() {
+    return this.slices;
+  }
+  
+  setSlices(slices) {
+    this.slices = slices;
+  }
+}
+
+const myDessert = new Pie("Apple");
 
 // 4) Define a Factory Function named "iceCreamFactory" that
 // accepts a "iceCreamFlavor" parameter.
@@ -44,6 +82,17 @@ given in the comments.
 // Hint: Look at this week's image for Factory Functions
 ////////
 // Use iceCreamFactory to instantiate an object named myScoop.
+function iceCreamFactory(iceCreamFlavor) {
+  const flavor = iceCreamFlavor;
+  return {
+    cone: "waffle",
+    serve: function() {
+      return `Here's your ${flavor} ice cream in a ${this.cone} cone.`; 
+    }
+  };
+}
+
+const myScoop = iceCreamFactory("chocolate");
 
 // 5) Using a literal (not a class or function), define an object
 // named "webDev" that has the following key-value pairs:
@@ -53,3 +102,12 @@ given in the comments.
 // data in a variable named sendJSON.
 // Now convert the sendJSON data back to an object
 // named receiveJSON.
+const webDev = {
+  foundation: "html",
+  design: "css",
+  logic: "javascript",
+  build: function(){return "building...";}
+}
+
+let sendJSON = JSON.stringify(webDev);
+let receiveJSON = JSON.parse(sendJSON);
